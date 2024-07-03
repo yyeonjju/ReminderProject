@@ -10,7 +10,7 @@ import SnapKit
 
 final class RegisterTodoView : BaseView {
     // MARK: - UI
-    private let titleTextField = {
+     let titleTextField = {
         let tf = UITextField()
         tf.normalTextField()
         tf.configurePlaceholderColor("제목")

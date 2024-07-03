@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class RegisterTodoViewController : UIViewController {
     
@@ -53,8 +54,29 @@ final class RegisterTodoViewController : UIViewController {
     }
     
     @objc private func addBarButtonClicked() {
-        dismiss(animated: true)
+        validateTitleText()
     }
+    
+    // MARK: - Method
+    private func validateTitleText() {
+        let text = viewManager.titleTextField.text
+        if !isOnlyWhitespace(text) {
+            
+            let realm = try! Realm()
+            
+            let data = TodoTable(title: text ?? "", memo: nil, expirationDate: nil, tag: nil, priority: nil, image: nil)
+            
+            try! realm.write {
+                realm.add(data)
+                print("Realm Create Succeed")
+            }
+            
+            dismiss(animated: true)
+        }
+            
+    }
+    
+
     
     // MARK: - SetupUI
     // MARK: - APIFetch
