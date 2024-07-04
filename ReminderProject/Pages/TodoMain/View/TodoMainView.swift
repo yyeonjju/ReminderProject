@@ -13,7 +13,7 @@ final class TodoMainView : BaseView {
     private let label = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 30)
-        label.textColor = .lightGray
+        label.textColor = Assets.Color.gray3
         label.text = "전체"
         return label
     }()

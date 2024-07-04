@@ -17,7 +17,7 @@ class TodoTable: Object {
     @Persisted var priority: Int?
     @Persisted var image: Data?
     
-
+//regDate
     
     convenience init(title: String,memo: String?, expirationDate: Date?, tag: String?, priority: Int?, image: Data?) {
        self.init()

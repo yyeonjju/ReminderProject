@@ -15,6 +15,9 @@
 		7D9267792C3520B50080827B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7D9267782C3520B50080827B /* Base */; };
 		7D9267822C35218A0080827B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7D9267812C35218A0080827B /* RealmSwift */; };
 		7D9267852C3521B00080827B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7D9267842C3521B00080827B /* SnapKit */; };
+		7DBE11AE2C36E62300695DCF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DBE11AD2C36E62300695DCF /* Colors.xcassets */; };
+		7DBE11B02C36E9D000695DCF /* UITextView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11AF2C36E9D000695DCF /* UITextView++.swift */; };
+		7DBE11B32C36ECFA00695DCF /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11B22C36ECFA00695DCF /* Separator.swift */; };
 		7DDA858B2C3522D100264576 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA858A2C3522D100264576 /* TodoListViewController.swift */; };
 		7DDA858D2C35232400264576 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA858C2C35232400264576 /* TodoListView.swift */; };
 		7DDA85922C35265400264576 /* TodoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA85912C35265400264576 /* TodoMainViewController.swift */; };
@@ -41,6 +44,9 @@
 		7D9267752C3520B40080827B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D9267782C3520B50080827B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D92677A2C3520B50080827B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DBE11AD2C36E62300695DCF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		7DBE11AF2C36E9D000695DCF /* UITextView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView++.swift"; sourceTree = "<group>"; };
+		7DBE11B22C36ECFA00695DCF /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		7DDA858A2C3522D100264576 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		7DDA858C2C35232400264576 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		7DDA85912C35265400264576 /* TodoMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoMainViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 		7D92676B2C3520B20080827B /* ReminderProject */ = {
 			isa = PBXGroup;
 			children = (
+				7DBE11AC2C36E60200695DCF /* Resources */,
 				7DDA85B02C356A5100264576 /* Database */,
 				7DDA85AD2C3565F600264576 /* Common */,
 				7DDA859B2C352B2800264576 /* Extension */,
@@ -99,11 +106,27 @@
 				7D92676E2C3520B20080827B /* SceneDelegate.swift */,
 				7D9267702C3520B20080827B /* ViewController.swift */,
 				7D9267722C3520B20080827B /* Main.storyboard */,
-				7D9267752C3520B40080827B /* Assets.xcassets */,
 				7D9267772C3520B50080827B /* LaunchScreen.storyboard */,
 				7D92677A2C3520B50080827B /* Info.plist */,
 			);
 			path = ReminderProject;
+			sourceTree = "<group>";
+		};
+		7DBE11AC2C36E60200695DCF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7D9267752C3520B40080827B /* Assets.xcassets */,
+				7DBE11AD2C36E62300695DCF /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7DBE11B12C36ECEA00695DCF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11B22C36ECFA00695DCF /* Separator.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7DDA85832C35226E00264576 /* Pages */ = {
@@ -195,6 +218,7 @@
 		7DDA85952C3529D800264576 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				7DBE11B12C36ECEA00695DCF /* View */,
 				7DDA85962C3529E600264576 /* Base */,
 			);
 			path = Component;
@@ -215,6 +239,7 @@
 				7DDA85A02C352B5100264576 /* UIView++.swift */,
 				7DDA85A22C35380C00264576 /* ViewController++.swift */,
 				7DDA85A82C35495700264576 /* TextField++.swift */,
+				7DBE11AF2C36E9D000695DCF /* UITextView++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -319,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D9267762C3520B50080827B /* Assets.xcassets in Resources */,
+				7DBE11AE2C36E62300695DCF /* Colors.xcassets in Resources */,
 				7D9267792C3520B50080827B /* Base in Resources */,
 				7D9267742C3520B20080827B /* Base in Resources */,
 			);
@@ -332,11 +358,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DDA85B52C3578DE00264576 /* TodoTable.swift in Sources */,
+				7DBE11B02C36E9D000695DCF /* UITextView++.swift in Sources */,
 				7DDA858B2C3522D100264576 /* TodoListViewController.swift in Sources */,
 				7DDA85942C35269200264576 /* TodoMainView.swift in Sources */,
 				7DDA85A32C35380C00264576 /* ViewController++.swift in Sources */,
 				7D9267712C3520B20080827B /* ViewController.swift in Sources */,
 				7DDA858D2C35232400264576 /* TodoListView.swift in Sources */,
+				7DBE11B32C36ECFA00695DCF /* Separator.swift in Sources */,
 				7DDA85922C35265400264576 /* TodoMainViewController.swift in Sources */,
 				7DDA85A52C353C5100264576 /* RegisterTodoViewController.swift in Sources */,
 				7DDA85AF2C35660100264576 /* NameSpace.swift in Sources */,

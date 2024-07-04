@@ -8,12 +8,12 @@
 import UIKit
 
 extension UITextField {
-    func normalTextField() {
-        self.backgroundColor = .gray
+    func normalTextField(bgColor : UIColor = .clear) {
+        self.backgroundColor = bgColor
         self.layer.cornerRadius = 10
     }
     
-    func configurePlaceholderColor(_ placeholder: String, _ color : UIColor = .systemGray3) {
+    func configurePlaceholderColor(_ placeholder: String, _ color : UIColor = Assets.Color.gray3) {
         self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor : color])
     }
 }

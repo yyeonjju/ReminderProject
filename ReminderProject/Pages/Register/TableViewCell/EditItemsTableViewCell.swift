@@ -13,7 +13,7 @@ final class EditItemsTableViewCell : UITableViewCell {
     // MARK: - UI
     private let background = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = Assets.Color.gray2
         view.layer.cornerRadius = 10
         return view
     }()
