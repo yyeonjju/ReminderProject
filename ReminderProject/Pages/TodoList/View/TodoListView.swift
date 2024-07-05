@@ -10,16 +10,18 @@ import SnapKit
 
 final class TodoListView : UIView {
     // MARK: - UI
-    let label = {
+    let subjectLabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 30)
+        label.textColor = .systemBlue
         label.text = "전체"
         return label
     }()
     
     let todoListTableView = {
         let tv = UITableView()
-        
+        tv.backgroundColor = .clear
+        tv.rowHeight = 80
         return tv
     }()
     
@@ -39,14 +41,20 @@ final class TodoListView : UIView {
     
     // MARK: - ConfigureUI
     func configureSubView() {
-        [todoListTableView]
+        [subjectLabel, todoListTableView]
             .forEach{
                 addSubview($0)
             }
     }
     
     func configureLayout() {
-        
+        subjectLabel.snp.makeConstraints { make in
+            make.top.leading.equalTo(safeAreaLayoutGuide)
+        }
+        todoListTableView.snp.makeConstraints { make in
+            make.top.equalTo(subjectLabel.snp.bottom).offset(20)
+            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
+        }
     }
 
 }

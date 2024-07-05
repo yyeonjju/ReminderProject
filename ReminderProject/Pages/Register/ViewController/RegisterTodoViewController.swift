@@ -40,6 +40,8 @@ final class RegisterTodoViewController : UIViewController {
     
     // MARK: - SetupDelegate
     private func setupDelegate() {
+        viewManager.memoTextView.delegate = self
+        
         viewManager.editItemsTableView.dataSource = self
         viewManager.editItemsTableView.delegate = self
         viewManager.editItemsTableView.register(EditItemsTableViewCell.self, forCellReuseIdentifier: EditItemsTableViewCell.description())
@@ -96,4 +98,29 @@ extension RegisterTodoViewController : UITableViewDelegate, UITableViewDataSourc
         return cell
     }
 }
+
+
+extension RegisterTodoViewController : UITextViewDelegate {
+    //focus를 얻는 경우
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == Texts.Placeholder.memoTextViewPlaceholer {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    
+    //focus를 잃는 경우
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if isOnlyWhitespace(textView.text){
+            textView.text = Texts.Placeholder.memoTextViewPlaceholer
+            textView.textColor = .lightGray
+        }
+    }
+}
+
+
+// TODO: - 제목 textField 입력할 때마다 validate -> 네비게이션에 있는 버튼 활성화 or not
+
+
+
 

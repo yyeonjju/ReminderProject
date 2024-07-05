@@ -12,7 +12,14 @@ import RealmSwift
 final class TodoListViewController : UIViewController {
     // MARK: - UI
     let viewManager = TodoListView()
+    
     // MARK: - Properties
+    var list : Results<TodoTable>! {
+        didSet{
+            viewManager.todoListTableView.reloadData()
+        }
+    }
+    
     // MARK: - Lifecycle
     
     override func loadView() {
@@ -26,10 +33,12 @@ final class TodoListViewController : UIViewController {
         print(realm.configuration.fileURL)
         let value = realm.objects(TodoTable.self)
         print("🧡value🧡", value)
+        list = value
         
         
         configureNavigationTitle(title: "목록", color: .white)
         configureNavigationBarButton()
+        setupDelegate()
     }
     // MARK: - setupNavigationBar
     func configureNavigationBarButton() {
@@ -38,7 +47,11 @@ final class TodoListViewController : UIViewController {
     }
     
     // MARK: - SetupDelegate
-    
+    private func setupDelegate() {
+        viewManager.todoListTableView.dataSource = self
+        viewManager.todoListTableView.delegate = self
+        viewManager.todoListTableView.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.description())
+    }
     
     // MARK: - AddTarget
     private func setupAddTarget() {
@@ -52,4 +65,19 @@ final class TodoListViewController : UIViewController {
     // MARK: - APIFetch
     // MARK: - PageTransition
     
+}
+
+
+extension TodoListViewController : UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.description(), for: indexPath) as! TodoListTableViewCell
+        let data = list[indexPath.row]
+        cell.configureData(data : data)
+        return cell
+    }
 }

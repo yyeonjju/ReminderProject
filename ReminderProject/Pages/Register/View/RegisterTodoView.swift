@@ -28,7 +28,7 @@ final class RegisterTodoView : BaseView {
     
     private let separator = Separator()
     
-    private lazy var memoTextView = {
+    lazy var memoTextView = {
         let tv = UITextView()
         tv.backgroundColor = .clear
         tv.text = memoTextViewPlaceholer
@@ -45,7 +45,7 @@ final class RegisterTodoView : BaseView {
     }()
 
     // MARK: - Properties
-    let memoTextViewPlaceholer = "내용"
+    let memoTextViewPlaceholer = Texts.Placeholder.memoTextViewPlaceholer
 
     
     // MARK: - Initializer

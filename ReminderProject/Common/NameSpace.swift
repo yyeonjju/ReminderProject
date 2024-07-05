@@ -14,9 +14,18 @@ enum TodoEditItem : String, CaseIterable  {
     case image = "이미지 추가"
 }
 
+
+
 enum Assets {
     enum Color {
         static let black = UIColor(named: "black")!
+        
+        static let white = UIColor(named: "white")!
+        
+        static let blue1 = UIColor(named: "blue1")!
+        static let blue2 = UIColor(named: "blue2")!
+        static let blue3 = UIColor(named: "blue3")!
+        
         static let gray1 = UIColor(named: "gray1")!//등록페이지 background
         static let gray2 = UIColor(named: "gray2")! //textField, tableViewCell
         static let gray3 = UIColor(named: "gray3")!
@@ -26,10 +35,17 @@ enum Assets {
         static let gray7 = UIColor(named: "gray7")!
         static let gray8 = UIColor(named: "gray8")!
         static let gray9 = UIColor(named: "gray9")!
-        static let white = UIColor(named: "white")!
+
     }
     
     
+}
+
+
+enum Texts {
+    enum Placeholder {
+        static let memoTextViewPlaceholer = "내용"
+    }
 }
 
 
