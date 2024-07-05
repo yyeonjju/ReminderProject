@@ -58,7 +58,8 @@ final class TodoListViewController : UIViewController {
     }
     // MARK: - EventSelector
     @objc private func plusButtonClicked() {
-        pageTransition(to: RegisterTodoViewController.self, type: .presentNavigation)
+        let vc = RegisterTodoViewController()
+        pageTransition(to: vc, type: .presentNavigation)
     }
     
     // MARK: - SetupUI

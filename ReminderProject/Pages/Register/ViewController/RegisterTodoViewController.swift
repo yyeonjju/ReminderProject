@@ -15,6 +15,8 @@ final class RegisterTodoViewController : UIViewController {
     
     // MARK: - Properties
     let todoEditItemList = TodoEditItem.allCases
+    var taskAfterReceivingData : (Any) -> Void = {_ in }
+    let todoData = TodoTable()
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -85,8 +87,13 @@ final class RegisterTodoViewController : UIViewController {
     // MARK: - PageTransition
 }
 
+extension RegisterTodoViewController : UITableViewDelegate, UITableViewDataSource, ObserveDataDelegate {
 
-extension RegisterTodoViewController : UITableViewDelegate, UITableViewDataSource {
+    func observeNextPageData(data: Any) {
+        taskAfterReceivingData(data)
+        viewManager.editItemsTableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoEditItemList.count
     }
@@ -94,8 +101,67 @@ extension RegisterTodoViewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EditItemsTableViewCell.description(), for: indexPath) as! EditItemsTableViewCell
         let data = todoEditItemList[indexPath.row]
-        cell.configureData(data : data)
+        var detailText = ""
+        switch data {
+        case .expirationDate:
+            if let expirationDate = todoData.expirationDate {
+                detailText = DateFormatter.getDateFormatter(format: .yearDotMonthDotDay).string(from: expirationDate)
+            }
+        case .tag:
+            if let tag = todoData.tag {
+                detailText = tag
+            }
+        case .priority:
+            if let priority = todoData.priority {
+                detailText = String(priority)
+            }
+        case .image:
+            detailText = ""
+        }
+        
+        cell.configureData(data : data, detailText : detailText)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let data = todoEditItemList[indexPath.row]
+        
+        switch data {
+        case .expirationDate:
+            taskAfterReceivingData = { date in
+                print("💚expirationDate💚date💚💚", date)
+                guard let date = date as? Date else { return }
+                self.todoData.expirationDate = date
+                print("💚expirationDate💚self.todoData💚💚", self.todoData)
+            }
+        case .tag:
+            taskAfterReceivingData = { stringArray in
+                print("💚tag💚-💚💚", stringArray)
+                guard let stringArray = stringArray as? [String] else { return }
+                self.todoData.tag = stringArray.first
+                print("💚expirationDate💚self.todoData💚💚", self.todoData)
+            }
+        case .priority:
+            taskAfterReceivingData = { int in
+                print("💚priority💚-💚💚", int)
+                guard let int = int as? Int else { return }
+                self.todoData.priority = int
+                print("💚expirationDate💚self.todoData💚💚", self.todoData)
+                
+            }
+        case .image:
+            taskAfterReceivingData = { image in
+                print("💚image💚-💚💚", image)
+                
+            }
+        }
+        
+        
+        let vc = data.pushTo.init() as? UIViewController&PassDataDelegatePropertyProtocol
+        guard let vc else {return }
+        vc.delegate = self
+        pageTransition(to: vc, type: .push)
     }
 }
 

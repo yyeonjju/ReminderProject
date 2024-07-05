@@ -19,6 +19,14 @@
 		7DBE11B02C36E9D000695DCF /* UITextView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11AF2C36E9D000695DCF /* UITextView++.swift */; };
 		7DBE11B32C36ECFA00695DCF /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11B22C36ECFA00695DCF /* Separator.swift */; };
 		7DBE11B62C37AB5800695DCF /* TodoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11B52C37AB5800695DCF /* TodoListTableViewCell.swift */; };
+		7DBE11C22C37C56000695DCF /* SettingExpirationDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11C12C37C56000695DCF /* SettingExpirationDateViewController.swift */; };
+		7DBE11C42C37C57100695DCF /* SettingTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11C32C37C57100695DCF /* SettingTagViewController.swift */; };
+		7DBE11C62C37C58F00695DCF /* SettingPriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11C52C37C58E00695DCF /* SettingPriorityViewController.swift */; };
+		7DBE11C82C37C5B300695DCF /* SettingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11C72C37C5B300695DCF /* SettingPhotoViewController.swift */; };
+		7DBE11CB2C37C7BC00695DCF /* SettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11CA2C37C7BC00695DCF /* SettingDateView.swift */; };
+		7DBE11CE2C37CD7E00695DCF /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 7DBE11CD2C37CD7E00695DCF /* FSCalendar */; };
+		7DBE11D02C37EC7B00695DCF /* DateFormatter++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11CF2C37EC7B00695DCF /* DateFormatter++.swift */; };
+		7DBE11D32C37FDEA00695DCF /* observeDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE11D22C37FDEA00695DCF /* observeDataDelegate.swift */; };
 		7DDA858B2C3522D100264576 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA858A2C3522D100264576 /* TodoListViewController.swift */; };
 		7DDA858D2C35232400264576 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA858C2C35232400264576 /* TodoListView.swift */; };
 		7DDA85922C35265400264576 /* TodoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA85912C35265400264576 /* TodoMainViewController.swift */; };
@@ -49,6 +57,13 @@
 		7DBE11AF2C36E9D000695DCF /* UITextView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView++.swift"; sourceTree = "<group>"; };
 		7DBE11B22C36ECFA00695DCF /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		7DBE11B52C37AB5800695DCF /* TodoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewCell.swift; sourceTree = "<group>"; };
+		7DBE11C12C37C56000695DCF /* SettingExpirationDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingExpirationDateViewController.swift; sourceTree = "<group>"; };
+		7DBE11C32C37C57100695DCF /* SettingTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTagViewController.swift; sourceTree = "<group>"; };
+		7DBE11C52C37C58E00695DCF /* SettingPriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPriorityViewController.swift; sourceTree = "<group>"; };
+		7DBE11C72C37C5B300695DCF /* SettingPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPhotoViewController.swift; sourceTree = "<group>"; };
+		7DBE11CA2C37C7BC00695DCF /* SettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDateView.swift; sourceTree = "<group>"; };
+		7DBE11CF2C37EC7B00695DCF /* DateFormatter++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++.swift"; sourceTree = "<group>"; };
+		7DBE11D22C37FDEA00695DCF /* observeDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = observeDataDelegate.swift; sourceTree = "<group>"; };
 		7DDA858A2C3522D100264576 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		7DDA858C2C35232400264576 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		7DDA85912C35265400264576 /* TodoMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoMainViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D9267822C35218A0080827B /* RealmSwift in Frameworks */,
+				7DBE11CE2C37CD7E00695DCF /* FSCalendar in Frameworks */,
 				7D9267852C3521B00080827B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +114,7 @@
 		7D92676B2C3520B20080827B /* ReminderProject */ = {
 			isa = PBXGroup;
 			children = (
+				7DBE11D12C37FDAA00695DCF /* Protocol */,
 				7DBE11AC2C36E60200695DCF /* Resources */,
 				7DDA85B02C356A5100264576 /* Database */,
 				7DDA85AD2C3565F600264576 /* Common */,
@@ -139,9 +156,94 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
+		7DBE11B72C37C0B800695DCF /* SettingExpirationDate */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11C92C37C79E00695DCF /* View */,
+				7DBE11B82C37C0CA00695DCF /* ViewController */,
+			);
+			path = SettingExpirationDate;
+			sourceTree = "<group>";
+		};
+		7DBE11B82C37C0CA00695DCF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11C12C37C56000695DCF /* SettingExpirationDateViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7DBE11B92C37C11600695DCF /* SettingTag */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11BA2C37C12300695DCF /* ViewController */,
+			);
+			path = SettingTag;
+			sourceTree = "<group>";
+		};
+		7DBE11BA2C37C12300695DCF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11C32C37C57100695DCF /* SettingTagViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7DBE11BB2C37C12F00695DCF /* SettingPriority */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11BC2C37C13D00695DCF /* ViewController */,
+			);
+			path = SettingPriority;
+			sourceTree = "<group>";
+		};
+		7DBE11BC2C37C13D00695DCF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11C52C37C58E00695DCF /* SettingPriorityViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7DBE11BD2C37C16A00695DCF /* SettingPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11BE2C37C17300695DCF /* ViewController */,
+			);
+			path = SettingPhoto;
+			sourceTree = "<group>";
+		};
+		7DBE11BE2C37C17300695DCF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11C72C37C5B300695DCF /* SettingPhotoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7DBE11C92C37C79E00695DCF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11CA2C37C7BC00695DCF /* SettingDateView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DBE11D12C37FDAA00695DCF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				7DBE11D22C37FDEA00695DCF /* observeDataDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		7DDA85832C35226E00264576 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				7DBE11BD2C37C16A00695DCF /* SettingPhoto */,
+				7DBE11BB2C37C12F00695DCF /* SettingPriority */,
+				7DBE11B92C37C11600695DCF /* SettingTag */,
+				7DBE11B72C37C0B800695DCF /* SettingExpirationDate */,
 				7DDA858E2C35262300264576 /* TodoMain */,
 				7DDA85852C35228900264576 /* Register */,
 				7DDA85842C35227C00264576 /* TodoList */,
@@ -251,6 +353,7 @@
 				7DDA85A22C35380C00264576 /* ViewController++.swift */,
 				7DDA85A82C35495700264576 /* TextField++.swift */,
 				7DBE11AF2C36E9D000695DCF /* UITextView++.swift */,
+				7DBE11CF2C37EC7B00695DCF /* DateFormatter++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -307,6 +410,7 @@
 			packageProductDependencies = (
 				7D9267812C35218A0080827B /* RealmSwift */,
 				7D9267842C3521B00080827B /* SnapKit */,
+				7DBE11CD2C37CD7E00695DCF /* FSCalendar */,
 			);
 			productName = ReminderProject;
 			productReference = 7D9267692C3520B20080827B /* ReminderProject.app */;
@@ -339,6 +443,7 @@
 			packageReferences = (
 				7D9267802C35218A0080827B /* XCRemoteSwiftPackageReference "realm-swift" */,
 				7D9267832C3521B00080827B /* XCRemoteSwiftPackageReference "SnapKit" */,
+				7DBE11CC2C37CD7E00695DCF /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 7D92676A2C3520B20080827B /* Products */;
 			projectDirPath = "";
@@ -371,6 +476,7 @@
 				7DDA85B52C3578DE00264576 /* TodoTable.swift in Sources */,
 				7DBE11B02C36E9D000695DCF /* UITextView++.swift in Sources */,
 				7DBE11B62C37AB5800695DCF /* TodoListTableViewCell.swift in Sources */,
+				7DBE11D32C37FDEA00695DCF /* observeDataDelegate.swift in Sources */,
 				7DDA858B2C3522D100264576 /* TodoListViewController.swift in Sources */,
 				7DDA85942C35269200264576 /* TodoMainView.swift in Sources */,
 				7DDA85A32C35380C00264576 /* ViewController++.swift in Sources */,
@@ -378,16 +484,22 @@
 				7DDA858D2C35232400264576 /* TodoListView.swift in Sources */,
 				7DBE11B32C36ECFA00695DCF /* Separator.swift in Sources */,
 				7DDA85922C35265400264576 /* TodoMainViewController.swift in Sources */,
+				7DBE11C22C37C56000695DCF /* SettingExpirationDateViewController.swift in Sources */,
 				7DDA85A52C353C5100264576 /* RegisterTodoViewController.swift in Sources */,
 				7DDA85AF2C35660100264576 /* NameSpace.swift in Sources */,
+				7DBE11C62C37C58F00695DCF /* SettingPriorityViewController.swift in Sources */,
 				7DDA85982C352A0000264576 /* BaseViewController.swift in Sources */,
 				7DDA859A2C352AF700264576 /* BaseView.swift in Sources */,
 				7DDA85A92C35495700264576 /* TextField++.swift in Sources */,
+				7DBE11C42C37C57100695DCF /* SettingTagViewController.swift in Sources */,
+				7DBE11C82C37C5B300695DCF /* SettingPhotoViewController.swift in Sources */,
 				7DDA85B22C35774F00264576 /* UtilFunc.swift in Sources */,
 				7DDA85A72C353C7A00264576 /* RegisterTodoView.swift in Sources */,
+				7DBE11CB2C37C7BC00695DCF /* SettingDateView.swift in Sources */,
 				7D92676D2C3520B20080827B /* AppDelegate.swift in Sources */,
 				7DDA85A12C352B5100264576 /* UIView++.swift in Sources */,
 				7D92676F2C3520B20080827B /* SceneDelegate.swift in Sources */,
+				7DBE11D02C37EC7B00695DCF /* DateFormatter++.swift in Sources */,
 				7DDA85AC2C35531B00264576 /* EditItemsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,6 +741,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		7DBE11CC2C37CD7E00695DCF /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -641,6 +761,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7D9267832C3521B00080827B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		7DBE11CD2C37CD7E00695DCF /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DBE11CC2C37CD7E00695DCF /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

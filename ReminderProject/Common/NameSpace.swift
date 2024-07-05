@@ -12,6 +12,20 @@ enum TodoEditItem : String, CaseIterable  {
     case tag = "태그"
     case priority = "우선순위"
     case image = "이미지 추가"
+    
+    
+    var pushTo : UIViewController.Type {
+        switch self {
+        case .expirationDate:
+            return SettingDateViewController.self
+        case .tag:
+            return SettingTagViewController.self
+        case .priority:
+            return SettingPriorityViewController.self
+        case .image:
+            return SettingPhotoViewController.self
+        }
+    }
 }
 
 

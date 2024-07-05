@@ -15,19 +15,17 @@ extension UIViewController {
         case presentFullNavigation
     }
     
-    func pageTransition<T : UIViewController>(to viewController : T.Type, type : TransitionType) {
-        let vc = viewController.self.init()
-        
+    func pageTransition(to viewController : UIViewController, type : TransitionType) {
         switch type {
         case .push:
-            navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(viewController, animated: true)
         case .present:
-            present(vc, animated: true)
+            present(viewController, animated: true)
         case .presentNavigation:
-            let nav = UINavigationController(rootViewController: vc)
+            let nav = UINavigationController(rootViewController: viewController)
             present(nav, animated: true)
         case .presentFullNavigation:
-            let nav = UINavigationController(rootViewController: vc)
+            let nav = UINavigationController(rootViewController: viewController)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true)
         }

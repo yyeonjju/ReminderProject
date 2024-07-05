@@ -28,7 +28,7 @@ final class EditItemsTableViewCell : UITableViewCell {
     
     private let detailLabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = Assets.Color.gray5
         label.font = .systemFont(ofSize: 13)
         return label
     }()
@@ -56,9 +56,9 @@ final class EditItemsTableViewCell : UITableViewCell {
     }
     
     // MARK: - ConfigureData
-    func configureData(data : TodoEditItem) {
+    func configureData(data : TodoEditItem, detailText : String) {
         titleLabel.text = data.rawValue
-//        detailLabel.text = "999"
+        detailLabel.text = detailText
     }
     
 

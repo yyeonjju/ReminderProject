@@ -33,7 +33,8 @@ final class TodoMainViewController : UIViewController {
     
     // MARK: - EventSelector
     @objc private func addTodoButtonTapped() {
-        pageTransition(to: RegisterTodoViewController.self, type: .presentNavigation)
+        let vc = RegisterTodoViewController()
+        pageTransition(to: vc, type: .presentNavigation)
     }
     
     // MARK: - APIFetch
