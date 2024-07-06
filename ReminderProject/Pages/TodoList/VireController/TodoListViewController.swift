@@ -30,6 +30,8 @@ final class TodoListViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        repository.checkSchemaVersion()
+        
         let value = repository.getAllObjects(tableModel: TodoTable.self)
         list = value
         print("list --> ", list)
@@ -75,8 +77,22 @@ extension TodoListViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.description(), for: indexPath) as! TodoListTableViewCell
+        cell.selectionStyle = .none
         let data = list[indexPath.row]
         cell.configureData(data : data)
+        cell.checkToggleButton.tag = indexPath.row
+        cell.checkToggleButton.addTarget(self, action: #selector(checkToggleButtonTapped), for: .touchUpInside)
         return cell
+    }
+    
+    @objc private func checkToggleButtonTapped(button : UIButton) {
+        let index = button.tag
+        let data = list[index]
+        let value = !data.isCompleted
+        //realm 데이터 업데이트
+        repository.editItem(TodoTable.self, at: data.id, editKey: "isCompleted", to: value)
+
+        //테이블뷰 업데이트
+        viewManager.todoListTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
 }

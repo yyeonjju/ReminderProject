@@ -65,12 +65,14 @@ final class RegisterTodoViewController : UIViewController {
             let data = todoData
             data.title = viewManager.titleTextField.text!
             data.memo = viewManager.memoTextView.text
+            data.registerDate = Date()
             repository.createItem(data)
 
             //2. 이미지를 fileManager에 저장
-            guard let image = viewManager.photoImageView.image else {return }
-            ImageSavingManager.saveImageToDocument(image: image, filename: "\(data.id)")
-            
+            if let image = viewManager.photoImageView.image {
+                ImageSavingManager.saveImageToDocument(image: image, filename: "\(data.id)")
+            }
+
             dismiss(animated: true)
         }
         
@@ -100,6 +102,7 @@ extension RegisterTodoViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EditItemsTableViewCell.description(), for: indexPath) as! EditItemsTableViewCell
+        cell.selectionStyle = .none
         let data = todoEditItemList[indexPath.row]
         var detailText = ""
         switch data {

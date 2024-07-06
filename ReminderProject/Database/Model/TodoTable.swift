@@ -13,29 +13,33 @@ class TodoTable: Object {
     @Persisted var title: String
     @Persisted var memo: String?
     @Persisted var expirationDate: Date?
-    @Persisted var tag: String?
+    @Persisted var tag: String? //❌(안씀. tags로 기능 수정)
     @Persisted var priority: Int?
-    @Persisted var image: Data?
+    @Persisted var image: Data? //❌(안씀. fileManager에 저장)
     
+    @Persisted var tags: List<String>
+    @Persisted var registerDate: Date
+    @Persisted var isCompleted: Bool
+    @Persisted var isLiked: Bool
+    @Persisted var isFlaged: Bool
+    @Persisted var isPinned: Bool
     
-//image: Data? //❌
-    //tag -> String? //❌
-    
-    //tags : [String]?
-    //regDate : Date
-    //isCompleted : Bool
-    //isLiked : Bool
-    //isFlaged : Bool
-    //isPinned : Bool
-    
-    convenience init(title: String,memo: String?, expirationDate: Date?, tag: String?, priority: Int?, image: Data?) {
-       self.init()
+    convenience init(title: String, memo: String?, expirationDate: Date?, tag: String?, priority: Int?, image: Data?, tags: List<String>, registerDate: Date, isCompleted: Bool, isLiked: Bool, isFlaged: Bool, isPinned: Bool) {
+        self.init()
         self.title = title
         self.memo = memo
         self.expirationDate = expirationDate
         self.tag = tag
         self.priority = priority
         self.image = image
-   }
+        self.tags = tags
+        self.registerDate = registerDate
+        self.isCompleted = isCompleted
+        self.isLiked = isLiked
+        self.isFlaged = isFlaged
+        self.isPinned = isPinned
+    }
+    
+    
 }
 

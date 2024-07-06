@@ -77,6 +77,11 @@ enum Constants {
                 return "낮음"
             }
         }
+        
+        var numberOfExclamationMark : Int {
+            -(self.rawValue - 3)
+        }
+        
     }
     
     

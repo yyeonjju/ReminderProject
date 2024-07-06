@@ -12,6 +12,19 @@ import RealmSwift
 final class RealmDBRepository<T : Object> {
     private let realm = try! Realm()
     
+    func checkFileURL() {
+        print("fileURL -> ", realm.configuration.fileURL)
+    }
+    
+    func checkSchemaVersion() {
+        do {
+            let version = try schemaVersionAtURL(realm.configuration.fileURL!)
+            print("version -> ",version)
+        }catch {
+            print(error)
+        }
+    }
+    
     func createItem(_ data : T) {
         do {
             try realm.write{
@@ -39,20 +52,23 @@ final class RealmDBRepository<T : Object> {
         }
     }
     
-    
-    
-    //특정 행 수정 : create
-//    try! realm.write{
-//        realm.create(
-//            ConsumptionDiaryTable.self,
-//            value: [
-//                "id" : data.id, //수정할 컬럼
-//                "money" : 111111
-//            ], // 이걸로 수정해줘라
-//            update: .modified
-//        ) // 기존 데이터 수정
-//    }
-    
+    func editItem<M : Object>(_ data : M.Type, at id : ObjectId ,editKey : String, to editValue : Any) {
+        do {
+            try realm.write{
+                realm.create(
+                    M.self,
+                    value: [
+                        "id" : id, //수정할 컬럼
+                        editKey : editValue
+                    ],
+                    update: .modified
+                )
+            }
+        }catch {
+            print(error)
+        }
+        
+    }
     
 }
 

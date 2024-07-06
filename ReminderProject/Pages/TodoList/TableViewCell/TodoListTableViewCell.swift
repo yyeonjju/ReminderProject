@@ -10,11 +10,11 @@ import SnapKit
 
 final class TodoListTableViewCell : UITableViewCell {
     // MARK: - UI
-    private let checkToggleButton = {
-        let iv = UIImageView()
-        iv.image = UIImage(systemName: "circle") //checkmark.circle.fill
-        iv.tintColor = Assets.Color.gray4
-        return iv
+    let checkToggleButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "circle"), for: .normal) //checkmark.circle.fill
+        btn.tintColor = Assets.Color.gray4
+        return btn
     }()
     
     private let priorityLabel = {
@@ -70,11 +70,28 @@ final class TodoListTableViewCell : UITableViewCell {
     
     // MARK: - ConfigureData
     func configureData(data : TodoTable) {
-        priorityLabel.text = "!!!\(" ")"
         titleLabel.text = data.title
-        memoLabel.text = "메모메모메모마ㅣ어니 ㅣ나어린 ㅇ리ㅏ 라ㅓㅇ "
-        expriationDateLabel.text = "2024.04.05\(" ")"
-        tagsLabel.text = "#공부#약속"
+    
+        checkToggleButton.setImage(UIImage(systemName: data.isCompleted ? "checkmark.circle.fill" : "circle"), for: .normal)
+        
+        if let priority = data.priority {
+            let numberOfExclamationMark = Constants.PrioritySegmentItem(rawValue : priority)!.numberOfExclamationMark
+            priorityLabel.text = String(repeating: "!", count: numberOfExclamationMark)
+          
+        } else { priorityLabel.text = "" }
+        
+        if let memo = data.memo {
+            memoLabel.text = memo
+        } else {  memoLabel.text = "" }
+        
+        if let date = data.expirationDate {
+            let dateString = DateFormatter.getDateFormatter(format: .yearDotMonthDotDay).string(from: date)
+            expriationDateLabel.text = dateString
+        } else {expriationDateLabel.text =  "" }
+        
+        if let tag = data.tag {
+            tagsLabel.text = "#\(tag)"
+        }else { tagsLabel.text = "" }
     }
 
     
@@ -92,7 +109,7 @@ final class TodoListTableViewCell : UITableViewCell {
         
         checkToggleButton.snp.makeConstraints { make in
             make.top.leading.equalTo(contentView).offset(10)
-            make.size.equalTo(20)
+            make.size.equalTo(30)
         }
         
         priorityLabel.snp.makeConstraints { make in
@@ -102,7 +119,7 @@ final class TodoListTableViewCell : UITableViewCell {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(10)
-            make.leading.equalTo(priorityLabel.snp.trailing)
+            make.leading.equalTo(priorityLabel.snp.trailing).offset(4)
         }
         
         memoLabel.snp.makeConstraints { make in
@@ -117,7 +134,7 @@ final class TodoListTableViewCell : UITableViewCell {
         
         tagsLabel.snp.makeConstraints { make in
             make.top.equalTo(memoLabel.snp.bottom).offset(4)
-            make.leading.equalTo(expriationDateLabel.snp.trailing)
+            make.leading.equalTo(expriationDateLabel.snp.trailing).offset(4)
         }
         
         
