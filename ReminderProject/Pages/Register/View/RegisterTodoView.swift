@@ -38,10 +38,16 @@ final class RegisterTodoView : BaseView {
     }()
     
     let editItemsTableView = {
-        let tv = UITableView()
+        let tv = AutoResizingTableView()
         tv.rowHeight = 50
         tv.backgroundColor = .clear
         return tv
+    }()
+    
+    let photoImageView = {
+        let iv = UIImageView()
+        iv.configureDefaultImageView(bgColor: .clear)
+        return iv
     }()
 
     // MARK: - Properties
@@ -64,7 +70,7 @@ final class RegisterTodoView : BaseView {
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [textFieldBackgroundView, titleTextField, separator, memoTextView, editItemsTableView]
+        [textFieldBackgroundView, titleTextField, separator, memoTextView, editItemsTableView, photoImageView]
             .forEach{
                 addSubview($0)
             }
@@ -96,8 +102,17 @@ final class RegisterTodoView : BaseView {
         
         editItemsTableView.snp.makeConstraints { make in
             make.top.equalTo(memoTextView.snp.bottom).offset(10)
-            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide).inset(10)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
+//            make.bottom.equalTo(safeAreaLayoutGuide)
+        }
+        
+        photoImageView.snp.makeConstraints { make in
+            make.top.equalTo(editItemsTableView.snp.bottom).offset(20)
+            make.centerX.equalTo(safeAreaLayoutGuide)
+            make.size.equalTo(100)
         }
     }
 
 }
+
+

@@ -17,8 +17,11 @@ class TodoTable: Object {
     @Persisted var priority: Int?
     @Persisted var image: Data?
     
-    //tag -> String? -> [String]?
     
+//image: Data? //❌
+    //tag -> String? //❌
+    
+    //tags : [String]?
     //regDate : Date
     //isCompleted : Bool
     //isLiked : Bool

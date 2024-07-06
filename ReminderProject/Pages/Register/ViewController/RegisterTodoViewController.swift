@@ -129,31 +129,24 @@ extension RegisterTodoViewController : UITableViewDelegate, UITableViewDataSourc
         
         switch data {
         case .expirationDate:
-            taskAfterReceivingData = { date in
-                print("💚expirationDate💚date💚💚", date)
-                guard let date = date as? Date else { return }
+            taskAfterReceivingData = { [weak self] date in
+                guard let self, let date = date as? Date else { return }
                 self.todoData.expirationDate = date
-                print("💚expirationDate💚self.todoData💚💚", self.todoData)
             }
         case .tag:
-            taskAfterReceivingData = { stringArray in
-                print("💚tag💚-💚💚", stringArray)
-                guard let stringArray = stringArray as? [String] else { return }
+            taskAfterReceivingData = { [weak self] stringArray in
+                guard let self, let stringArray = stringArray as? [String] else { return }
                 self.todoData.tag = stringArray.first
-                print("💚expirationDate💚self.todoData💚💚", self.todoData)
             }
         case .priority:
-            taskAfterReceivingData = { int in
-                print("💚priority💚-💚💚", int)
-                guard let int = int as? Int else { return }
+            taskAfterReceivingData = { [weak self] int in
+                guard let self, let int = int as? Int else { return }
                 self.todoData.priority = int
-                print("💚expirationDate💚self.todoData💚💚", self.todoData)
-                
             }
         case .image:
-            taskAfterReceivingData = { image in
-                print("💚image💚-💚💚", image)
-                
+            taskAfterReceivingData = { [weak self] uiImage in
+                guard let self else { return }
+                self.viewManager.photoImageView.image = uiImage as? UIImage
             }
         }
         
