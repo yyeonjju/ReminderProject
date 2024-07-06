@@ -17,6 +17,7 @@ final class RegisterTodoViewController : UIViewController {
     let todoEditItemList = TodoEditItem.allCases
     var taskAfterReceivingData : (Any) -> Void = {_ in }
     let todoData = TodoTable()
+    let repository = RealmDBRepository()
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -58,29 +59,28 @@ final class RegisterTodoViewController : UIViewController {
     }
     
     @objc private func addBarButtonClicked() {
-        validateTitleText()
-    }
-    
-    // MARK: - Method
-    private func validateTitleText() {
-        let text = viewManager.titleTextField.text
-        if !isOnlyWhitespace(text) {
+        if validateTitleText() {
             
-            let realm = try! Realm()
-            
-            let data = TodoTable(title: text ?? "", memo: nil, expirationDate: nil, tag: nil, priority: nil, image: nil)
-            
-            try! realm.write {
-                realm.add(data)
-                print("Realm Create Succeed")
-            }
+            //1. realm DB에 저장
+            let data = todoData
+            data.title = viewManager.titleTextField.text!
+            data.memo = viewManager.memoTextView.text
+            repository.createItem(data)
+
+            //2. 이미지를 fileManager에 저장
+            guard let image = viewManager.photoImageView.image else {return }
+            ImageSavingManager.saveImageToDocument(image: image, filename: "\(data.id)")
             
             dismiss(animated: true)
         }
-            
+        
     }
     
-
+    // MARK: - Method
+    private func validateTitleText() -> Bool {
+        let text = viewManager.titleTextField.text
+        return !isOnlyWhitespace(text)
+    }
     
     // MARK: - SetupUI
     // MARK: - APIFetch

@@ -19,6 +19,7 @@ final class TodoListViewController : UIViewController {
             viewManager.todoListTableView.reloadData()
         }
     }
+    let repository = RealmDBRepository()
     
     // MARK: - Lifecycle
     
@@ -28,13 +29,10 @@ final class TodoListViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let realm = try! Realm()
-        print(realm.configuration.fileURL)
-        let value = realm.objects(TodoTable.self)
-        print("🧡value🧡", value)
+
+        let value = repository.getAllObjects(tableModel: TodoTable.self)
         list = value
-        
+        print("list --> ", list)
         
         configureNavigationTitle(title: "목록", color: .white)
         configureNavigationBarButton()
