@@ -84,13 +84,38 @@ extension TodoListViewController : UITableViewDelegate, UITableViewDataSource {
         cell.checkToggleButton.addTarget(self, action: #selector(checkToggleButtonTapped), for: .touchUpInside)
         return cell
     }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let data = list[indexPath.row]
+        
+        let delete = UIContextualAction(style: .normal, title: "delete") {action, view, completionHandler in
+            self.repository.removeItem(data)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+//            tableView.reloadData()
+        }
+        delete.backgroundColor = Assets.Color.red
+        
+        let flag = UIContextualAction(style: .normal, title: "flag") {action, view, completionHandler in
+            let value = !data.isFlaged
+            //realm 데이터 업데이트
+            self.repository.editItem(TodoTable.self, at: data.id, editKey: TodoTableProperty.isFlaged.rawValue, to: value)
+
+            //테이블뷰 업데이트
+            self.viewManager.todoListTableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
+        }
+        flag.backgroundColor = Assets.Color.flagYellow
+        
+        return UISwipeActionsConfiguration(actions: [flag, delete])
+    }
+    
+    
     
     @objc private func checkToggleButtonTapped(button : UIButton) {
         let index = button.tag
         let data = list[index]
         let value = !data.isCompleted
         //realm 데이터 업데이트
-        repository.editItem(TodoTable.self, at: data.id, editKey: "isCompleted", to: value)
+        repository.editItem(TodoTable.self, at: data.id, editKey: TodoTableProperty.isCompleted.rawValue, to: value)
 
         //테이블뷰 업데이트
         viewManager.todoListTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)

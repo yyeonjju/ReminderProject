@@ -43,3 +43,21 @@ class TodoTable: Object {
     
 }
 
+
+
+enum TodoTableProperty : String{
+//    case id
+    case title
+    case memo
+    case expirationDate
+    case tag
+    case priority
+    case image
+    case tags
+    case registerDate
+    case isCompleted
+    case isLiked
+    case isFlaged
+    case isPinned
+}
+

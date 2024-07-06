@@ -36,6 +36,9 @@ enum Assets {
         
         static let white = UIColor(named: "white")!
         
+        static let flagYellow = UIColor(named: "flagYellow")!
+        static let red = UIColor(named: "red")!
+        
         static let blue1 = UIColor(named: "blue1")!
         static let blue2 = UIColor(named: "blue2")!
         static let blue3 = UIColor(named: "blue3")!
