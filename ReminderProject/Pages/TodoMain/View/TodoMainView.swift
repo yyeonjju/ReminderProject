@@ -18,6 +18,12 @@ final class TodoMainView : BaseView {
         return label
     }()
     
+    let categoryCollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionVewLayout(numberofItemInrow: 2, cellIneterSpacing : 10, sectionSpacing: 20 ,height: 80))
+        cv.backgroundColor = .clear
+        return cv
+    }()
+    
     let addTodoButton = {
        let button = UIButton()
         button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
@@ -27,12 +33,13 @@ final class TodoMainView : BaseView {
     }()
     
     
+    
     // MARK: - Initializer
     
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [label, addTodoButton]
+        [label, categoryCollectionView, addTodoButton]
             .forEach{
                 addSubview($0)
             }
@@ -41,6 +48,11 @@ final class TodoMainView : BaseView {
     override func configureLayout() {
         label.snp.makeConstraints { make in
             make.top.leading.equalTo(safeAreaLayoutGuide)
+        }
+        
+        categoryCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(label.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
         
         addTodoButton.snp.makeConstraints { make in

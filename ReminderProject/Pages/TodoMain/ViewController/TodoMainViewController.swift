@@ -13,6 +13,8 @@ final class TodoMainViewController : UIViewController {
     let viewManager = TodoMainView()
     
     // MARK: - Properties
+    let categoryItems = CategoryItem.allCases
+    
     // MARK: - Lifecycle
     override func loadView() {
         view = viewManager
@@ -21,10 +23,16 @@ final class TodoMainViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupDelegate()
         setupAddTarget()
     }
     
     // MARK: - SetupDelegate
+    private func setupDelegate() {
+        viewManager.categoryCollectionView.dataSource = self
+        viewManager.categoryCollectionView.delegate = self
+        viewManager.categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.description())
+    }
     
     // MARK: - AddTarget
     private func setupAddTarget() {
@@ -41,4 +49,18 @@ final class TodoMainViewController : UIViewController {
     // MARK: - PageTransition
     
     
+}
+
+
+extension TodoMainViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categoryItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.description(), for: indexPath) as! CategoryCollectionViewCell
+        let data = categoryItems[indexPath.row]
+        cell.configureData(data: data)
+        return cell
+    }
 }

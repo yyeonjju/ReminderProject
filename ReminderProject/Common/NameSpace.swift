@@ -28,6 +28,35 @@ enum TodoEditItem : String, CaseIterable  {
     }
 }
 
+enum CategoryItem : String, CaseIterable {
+    case today = "오늘"
+    case upcoming = "예정"
+    case all = "전체"
+    case flag = "깃발 표시"
+    case completed = "완료됨"
+    
+    struct iconStyle {
+        let systemName : String
+        let color : UIColor
+    }
+    
+    var icon : iconStyle {
+        switch self {
+        case .today:
+            iconStyle(systemName: "clock", color: Assets.Color.blue2)
+        case .upcoming:
+            iconStyle(systemName: "calendar", color: Assets.Color.red)
+        case .all:
+            iconStyle(systemName: "tray", color: Assets.Color.gray3)
+        case .flag:
+            iconStyle(systemName: "flag.fill", color: Assets.Color.flagYellow)
+        case .completed:
+            iconStyle(systemName: "checkmark", color: Assets.Color.gray3)
+        }
+    }
+    
+}
+
 
 
 enum Assets {
@@ -86,13 +115,6 @@ enum Constants {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
     
 }
 
