@@ -45,7 +45,7 @@ final class RegisterTodoView : BaseView {
     }()
 
     // MARK: - Properties
-    let memoTextViewPlaceholer = Texts.Placeholder.memoTextViewPlaceholer
+    let memoTextViewPlaceholer = Constants.Placeholder.memoTextViewPlaceholer
 
     
     // MARK: - Initializer

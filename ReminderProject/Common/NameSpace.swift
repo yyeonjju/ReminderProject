@@ -56,10 +56,36 @@ enum Assets {
 }
 
 
-enum Texts {
+enum Constants {
     enum Placeholder {
         static let memoTextViewPlaceholer = "내용"
     }
+    
+    enum PrioritySegmentItem : Int, CaseIterable  {
+        case high
+        case moderate
+        case low
+        
+        
+        var itemText : String {
+            switch self {
+            case .high:
+                return "높음"
+            case .moderate:
+                return "보통"
+            case .low:
+                return "낮음"
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 

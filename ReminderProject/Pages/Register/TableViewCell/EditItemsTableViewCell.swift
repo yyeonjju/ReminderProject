@@ -98,7 +98,7 @@ final class EditItemsTableViewCell : UITableViewCell {
         }
         
         detailLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(chevronImageView.snp.leading)
+            make.trailing.equalTo(chevronImageView.snp.leading).inset(-10)
             make.centerY.equalTo(contentView.snp.centerY)
         }
     }
