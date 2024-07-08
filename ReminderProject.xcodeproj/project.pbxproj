@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D8B6C0C2C3BFE6D00E22ED7 /* FolderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B6C0B2C3BFE6D00E22ED7 /* FolderListViewController.swift */; };
+		7D8B6C0E2C3BFEA400E22ED7 /* FolderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B6C0D2C3BFEA400E22ED7 /* FolderListView.swift */; };
+		7D8B6C112C3C00C700E22ED7 /* FoldersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B6C102C3C00C700E22ED7 /* FoldersTableViewCell.swift */; };
+		7D8B6C162C3C05BD00E22ED7 /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B6C152C3C05BD00E22ED7 /* AddFolderViewController.swift */; };
+		7D8B6C182C3C05E800E22ED7 /* AddFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B6C172C3C05E800E22ED7 /* AddFolderView.swift */; };
+		7D8B6C1D2C3C19CF00E22ED7 /* FolderItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B6C1C2C3C19CF00E22ED7 /* FolderItemListViewController.swift */; };
 		7D92676D2C3520B20080827B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92676C2C3520B20080827B /* AppDelegate.swift */; };
 		7D92676F2C3520B20080827B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92676E2C3520B20080827B /* SceneDelegate.swift */; };
 		7D9267712C3520B20080827B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9267702C3520B20080827B /* ViewController.swift */; };
@@ -55,6 +61,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D8B6C0B2C3BFE6D00E22ED7 /* FolderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewController.swift; sourceTree = "<group>"; };
+		7D8B6C0D2C3BFEA400E22ED7 /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; };
+		7D8B6C102C3C00C700E22ED7 /* FoldersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersTableViewCell.swift; sourceTree = "<group>"; };
+		7D8B6C152C3C05BD00E22ED7 /* AddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
+		7D8B6C172C3C05E800E22ED7 /* AddFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderView.swift; sourceTree = "<group>"; };
+		7D8B6C1C2C3C19CF00E22ED7 /* FolderItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderItemListViewController.swift; sourceTree = "<group>"; };
 		7D9267692C3520B20080827B /* ReminderProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D92676C2C3520B20080827B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D92676E2C3520B20080827B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +127,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D8B6C082C3BFE3200E22ED7 /* FolderList */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C0F2C3C00BB00E22ED7 /* TableViewCell */,
+				7D8B6C0A2C3BFE4800E22ED7 /* View */,
+				7D8B6C092C3BFE3D00E22ED7 /* ViewController */,
+			);
+			path = FolderList;
+			sourceTree = "<group>";
+		};
+		7D8B6C092C3BFE3D00E22ED7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C0B2C3BFE6D00E22ED7 /* FolderListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7D8B6C0A2C3BFE4800E22ED7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C0D2C3BFEA400E22ED7 /* FolderListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D8B6C0F2C3C00BB00E22ED7 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C102C3C00C700E22ED7 /* FoldersTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		7D8B6C122C3C058200E22ED7 /* AddFolder */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C142C3C059400E22ED7 /* View */,
+				7D8B6C132C3C058D00E22ED7 /* ViewController */,
+			);
+			path = AddFolder;
+			sourceTree = "<group>";
+		};
+		7D8B6C132C3C058D00E22ED7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C152C3C05BD00E22ED7 /* AddFolderViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7D8B6C142C3C059400E22ED7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C172C3C05E800E22ED7 /* AddFolderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D8B6C192C3C19A700E22ED7 /* FolderItemList */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C1A2C3C19B200E22ED7 /* ViewController */,
+			);
+			path = FolderItemList;
+			sourceTree = "<group>";
+		};
+		7D8B6C1A2C3C19B200E22ED7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B6C1C2C3C19CF00E22ED7 /* FolderItemListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		7D9267602C3520B20080827B = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +415,9 @@
 		7DDA85832C35226E00264576 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				7D8B6C192C3C19A700E22ED7 /* FolderItemList */,
+				7D8B6C122C3C058200E22ED7 /* AddFolder */,
+				7D8B6C082C3BFE3200E22ED7 /* FolderList */,
 				7DBE11BD2C37C16A00695DCF /* SettingPhoto */,
 				7DBE11BB2C37C12F00695DCF /* SettingPriority */,
 				7DBE11B92C37C11600695DCF /* SettingTag */,
@@ -579,24 +669,30 @@
 				7DBE11D62C382AD100695DCF /* SettingTagView.swift in Sources */,
 				7DBE11F52C3962DA00695DCF /* CategoryCollectionViewCell.swift in Sources */,
 				7DDA858D2C35232400264576 /* TodoListView.swift in Sources */,
+				7D8B6C112C3C00C700E22ED7 /* FoldersTableViewCell.swift in Sources */,
 				7DBE11DD2C3837AB00695DCF /* TagCollectionViewCell.swift in Sources */,
 				7DBE11B32C36ECFA00695DCF /* Separator.swift in Sources */,
+				7D8B6C1D2C3C19CF00E22ED7 /* FolderItemListViewController.swift in Sources */,
 				7DDA85922C35265400264576 /* TodoMainViewController.swift in Sources */,
 				7DBE11C22C37C56000695DCF /* SettingExpirationDateViewController.swift in Sources */,
 				7DDA85A52C353C5100264576 /* RegisterTodoViewController.swift in Sources */,
 				7DBE11E22C38E55C00695DCF /* SettingPriorityView.swift in Sources */,
 				7DDA85AF2C35660100264576 /* NameSpace.swift in Sources */,
 				7DBE11C62C37C58F00695DCF /* SettingPriorityViewController.swift in Sources */,
+				7D8B6C182C3C05E800E22ED7 /* AddFolderView.swift in Sources */,
 				7DDA85982C352A0000264576 /* BaseViewController.swift in Sources */,
 				7DBE11E52C38F7C600695DCF /* SettingPhotoView.swift in Sources */,
 				7DDA859A2C352AF700264576 /* BaseView.swift in Sources */,
+				7D8B6C162C3C05BD00E22ED7 /* AddFolderViewController.swift in Sources */,
 				7DDA85A92C35495700264576 /* TextField++.swift in Sources */,
 				7DBE11C42C37C57100695DCF /* SettingTagViewController.swift in Sources */,
 				7DBE11C82C37C5B300695DCF /* SettingPhotoViewController.swift in Sources */,
+				7D8B6C0E2C3BFEA400E22ED7 /* FolderListView.swift in Sources */,
 				7DDA85B22C35774F00264576 /* UtilFunc.swift in Sources */,
 				7DDA85A72C353C7A00264576 /* RegisterTodoView.swift in Sources */,
 				7DBE11D82C382D8F00695DCF /* UIButton++.swift in Sources */,
 				7DBE11F02C391E9300695DCF /* RealmDBRepository.swift in Sources */,
+				7D8B6C0C2C3BFE6D00E22ED7 /* FolderListViewController.swift in Sources */,
 				7DBE11EA2C3906DD00695DCF /* AutoResizingTableView.swift in Sources */,
 				7DBE11CB2C37C7BC00695DCF /* SettingDateView.swift in Sources */,
 				7D92676D2C3520B20080827B /* AppDelegate.swift in Sources */,

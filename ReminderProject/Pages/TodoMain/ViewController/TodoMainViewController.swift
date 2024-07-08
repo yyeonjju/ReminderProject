@@ -58,12 +58,17 @@ final class TodoMainViewController : UIViewController {
     // MARK: - EventSelector
     @objc private func addTodoButtonTapped() {
         let vc = RegisterTodoViewController()
+        vc.taskAfterDismissing = {[weak self] in
+            // present fullScreen이 아니어서 viewWillAppear 작동 X
+            //추가된 데이터를CollectionView에 업데이트하기위해
+            self?.viewManager.categoryCollectionView.reloadData()
+        }
         pageTransition(to: vc, type: .presentNavigation)
     }
     
     @objc private func folderButtonClicked() {
-//        let vc = RegisterTodoViewController()
-//        pageTransition(to: vc, type: .presentNavigation)
+        let vc = FolderListViewController()
+        pageTransition(to: vc, type: .push)
     }
     
     // MARK: - APIFetch

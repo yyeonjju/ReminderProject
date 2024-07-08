@@ -16,8 +16,15 @@ final class RegisterTodoViewController : UIViewController {
     // MARK: - Properties
     let todoEditItemList = TodoEditItem.allCases
     var taskAfterReceivingData : (Any) -> Void = {_ in }
-    let todoData = TodoTable()
-    let repository = RealmDBRepository()
+    var taskAfterDismissing : () -> Void = {}
+    private let todoData = TodoTable()
+    private let repository = RealmDBRepository()
+    private var folderList : Results<TodoFolder>!
+    private var selectedFolder : TodoFolder? {
+        didSet {
+            viewManager.folderPickerTextField.text = selectedFolder?.name
+        }
+    }
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -30,6 +37,9 @@ final class RegisterTodoViewController : UIViewController {
         configureNavigationTitle(title: "새로운 할 일", color: .white)
         configureNavigationBarButton()
         setupDelegate()
+        setupPickerViewToolBar()
+        
+        folderList = repository.getAllObjects(tableModel: TodoFolder.self)
     }
     
     // MARK: - setupNavigationBar
@@ -48,25 +58,42 @@ final class RegisterTodoViewController : UIViewController {
         viewManager.editItemsTableView.dataSource = self
         viewManager.editItemsTableView.delegate = self
         viewManager.editItemsTableView.register(EditItemsTableViewCell.self, forCellReuseIdentifier: EditItemsTableViewCell.description())
+        
+        viewManager.folderPicker.delegate = self
+        viewManager.folderPicker.dataSource = self
+        
     }
-    // MARK: - AddTarget
-    private func setupAddTarget() {
+    // MARK: -
+    private func setupPickerViewToolBar() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneButtonTapped))
+        
+        viewManager.folderPickerToolBar.setItems([doneButton], animated: true)
     }
     
     // MARK: - EventSelector
+    @objc private func doneButtonTapped() {
+        self.view.endEditing(true)
+    }
+    
     @objc private func cancelBarButtonClicked() {
         dismiss(animated: true)
+        taskAfterDismissing()
     }
     
     @objc private func addBarButtonClicked() {
-        if validateTitleText() {
+        if validateText() {
             
             //1. realm DB에 저장
             let data = todoData
             data.title = viewManager.titleTextField.text!
             data.memo = viewManager.memoTextView.text
             data.registerDate = Date()
-            repository.createItem(data)
+//            repository.createItem(data)
+            
+            if let selectedFolder {
+                repository.addFolderRelatedList(parentData: selectedFolder, childData: data)
+            }
+            
 
             //2. 이미지를 fileManager에 저장
             if let image = viewManager.photoImageView.image {
@@ -74,19 +101,45 @@ final class RegisterTodoViewController : UIViewController {
             }
 
             dismiss(animated: true)
+            taskAfterDismissing()
         }
         
     }
     
     // MARK: - Method
-    private func validateTitleText() -> Bool {
-        let text = viewManager.titleTextField.text
-        return !isOnlyWhitespace(text)
+    private func validateText() -> Bool {
+        let titleText = viewManager.titleTextField.text
+        let folderText = viewManager.folderPickerTextField.text
+        return !isOnlyWhitespace(titleText) && !isOnlyWhitespace(folderText)
     }
     
     // MARK: - SetupUI
     // MARK: - APIFetch
     // MARK: - PageTransition
+}
+
+extension RegisterTodoViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+       return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return folderList.count
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let data = folderList[row]
+        return data.name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let data = folderList[row]
+        selectedFolder = data
+    }
+    
+    
+    
 }
 
 extension RegisterTodoViewController : UITableViewDelegate, UITableViewDataSource, ObserveDataDelegate {

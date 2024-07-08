@@ -9,14 +9,14 @@ import UIKit
 import RealmSwift
 
 
-final class TodoListViewController : UIViewController {
+class TodoListViewController : UIViewController {
     // MARK: - UI
-    private let viewManager = TodoListView()
+    let viewManager = TodoListView()
     
     // MARK: - Properties
     var category : CategoryItem?
-    private var list : Results<TodoTable>!
-    private let repository = RealmDBRepository()
+    var list : Results<TodoTable>!
+    let repository = RealmDBRepository()
     
     // MARK: - Lifecycle
     
@@ -49,15 +49,6 @@ final class TodoListViewController : UIViewController {
         list = category?.todoList(wholeList: wholeList)
     }
 
-    
-    // MARK: - AddTarget
-    private func setupAddTarget() {
-    }
-    // MARK: - EventSelector
-    // MARK: - SetupUI
-    // MARK: - APIFetch
-    // MARK: - PageTransition
-    
 }
 
 

@@ -10,6 +10,27 @@ import SnapKit
 
 final class RegisterTodoView : BaseView {
     // MARK: - UI
+    
+    let folderPickerToolBar = {
+        let tb = UIToolbar()
+        tb.sizeToFit()
+        return tb
+    }()
+    
+    let folderPicker = {
+        let pv = UIPickerView()
+        return pv
+    }()
+    
+    lazy var folderPickerTextField = {
+        let tf = UITextField()
+        tf.configurePlaceholderColor("  폴더 선택")
+        tf.normalTextField(bgColor: Assets.Color.gray2)
+        tf.inputView = folderPicker
+        tf.inputAccessoryView = folderPickerToolBar
+        return tf
+    }()
+    
     private let textFieldBackgroundView = {
         let view = UIView()
         view.backgroundColor = Assets.Color.gray2
@@ -70,15 +91,21 @@ final class RegisterTodoView : BaseView {
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [textFieldBackgroundView, titleTextField, separator, memoTextView, editItemsTableView, photoImageView]
+        [folderPickerTextField, textFieldBackgroundView, titleTextField, separator, memoTextView, editItemsTableView, photoImageView]
             .forEach{
                 addSubview($0)
             }
     }
     
     override func configureLayout() {
-        textFieldBackgroundView.snp.makeConstraints { make in
+        folderPickerTextField.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(40)
+        }
+        
+        textFieldBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(folderPickerTextField.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
             make.bottom.equalTo(memoTextView.snp.bottom)
 //            make.height.equalTo(160)
         }

@@ -37,6 +37,17 @@ final class RealmDBRepository<T : Object> {
     }
     
     
+    func addFolderRelatedList(parentData : TodoFolder, childData : TodoTable) {
+        do {
+            try realm.write{
+                parentData.relatedList.append(childData)
+                print("Realm Create Succeed")
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
     func getAllObjects<M : Object>(tableModel : M.Type) -> Results<M> {
         let value =  realm.objects(M.self)
         return value
@@ -68,6 +79,13 @@ final class RealmDBRepository<T : Object> {
             print(error)
         }
         
+    }
+    
+    func getResultsFromList(list: List<TodoTable>) -> Results<TodoTable> {
+        let primaryKeys = list.map{$0.id}
+        let predicate = NSPredicate(format: "id IN %@", Array(primaryKeys))
+        let results = realm.objects(TodoTable.self).filter(predicate)
+        return results
     }
     
 }

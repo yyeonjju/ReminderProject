@@ -8,6 +8,23 @@
 import Foundation
 import RealmSwift
 
+class TodoFolder : Object {
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var name: String
+    @Persisted var detail: String
+    @Persisted var regDate: Date
+    
+    //1:n
+    @Persisted var relatedList : List<TodoTable>
+    
+    convenience init(name: String, detail: String, regDate: Date) {
+        self.init()
+        self.name = name
+        self.detail = detail
+        self.regDate = regDate
+    }
+}
+
 class TodoTable: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
@@ -23,6 +40,10 @@ class TodoTable: Object {
     @Persisted var isLiked: Bool
     @Persisted var isFlaged: Bool
     @Persisted var isPinned: Bool
+    
+    
+    //역관계
+//    @Persisted(originProperty: "relatedList") var main : LinkingObjects<TodoFolder>
     
     convenience init(title: String, memo: String?, expirationDate: Date?, tag: String?, priority: Int?, image: Data?, tags: List<String>, registerDate: Date, isCompleted: Bool, isLiked: Bool, isFlaged: Bool, isPinned: Bool) {
         self.init()
