@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 enum TodoEditItem : String, CaseIterable  {
     case expirationDate = "마감일"
@@ -55,6 +56,20 @@ enum CategoryItem : String, CaseIterable {
         }
     }
     
+    func todoList (wholeList : Results<TodoTable>) -> Results<TodoTable> {
+        switch self {
+        case .today:
+            wholeList.where{$0.expirationDate.contains(returnTodayDateRange(for: Date()))}
+        case .upcoming:
+            wholeList.where{$0.expirationDate > Date()}
+        case .all:
+            wholeList
+        case .flag:
+            wholeList.where{$0.isFlaged}
+        case .completed:
+            wholeList.where{$0.isCompleted}
+        }
+    }
 }
 
 

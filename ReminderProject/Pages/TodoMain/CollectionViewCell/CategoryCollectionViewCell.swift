@@ -64,11 +64,11 @@ final class CategoryCollectionViewCell : UICollectionViewCell {
     }
     
     // MARK: - ConfigureData
-    func configureData(data : CategoryItem) {
+    func configureData(data : CategoryItem, count : Int) {
         iconImage.image = UIImage(systemName: data.icon.systemName)
         iconContainerView.backgroundColor = data.icon.color
         categoryTitleLabel.text = data.rawValue
-        countLabel.text = "\(0)"
+        countLabel.text = "\(count)"
     }
     
     

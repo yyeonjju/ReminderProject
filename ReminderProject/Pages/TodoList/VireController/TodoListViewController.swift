@@ -11,15 +11,12 @@ import RealmSwift
 
 final class TodoListViewController : UIViewController {
     // MARK: - UI
-    let viewManager = TodoListView()
+    private let viewManager = TodoListView()
     
     // MARK: - Properties
-    var list : Results<TodoTable>! {
-        didSet{
-            viewManager.todoListTableView.reloadData()
-        }
-    }
-    let repository = RealmDBRepository()
+    var category : CategoryItem?
+    private var list : Results<TodoTable>!
+    private let repository = RealmDBRepository()
     
     // MARK: - Lifecycle
     
@@ -30,21 +27,14 @@ final class TodoListViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        repository.checkSchemaVersion()
-        
-        let value = repository.getAllObjects(tableModel: TodoTable.self)
-        list = value
-        print("list --> ", list)
-        
-        configureNavigationTitle(title: "목록", color: .white)
-        configureNavigationBarButton()
+        guard let category else {return }
+        let wholeList = repository.getAllObjects(tableModel: TodoTable.self)
+        filterFromWholeList(wholeList: wholeList)
+        configureNavigationTitle(title: category.rawValue, color: .white)
+        viewManager.subjectLabel.text = category.rawValue
         setupDelegate()
     }
-    // MARK: - setupNavigationBar
-    func configureNavigationBarButton() {
-        let plus = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(plusButtonClicked))
-        navigationItem.rightBarButtonItems = [plus]
-    }
+
     
     // MARK: - SetupDelegate
     private func setupDelegate() {
@@ -53,15 +43,17 @@ final class TodoListViewController : UIViewController {
         viewManager.todoListTableView.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.description())
     }
     
+    // MARK: - Method
+    private func filterFromWholeList(wholeList : Results<TodoTable>) {
+        //데이터베이스의 리스트에서 query 적용 ->  query 적용 하면 상태값 바뀌는 순간 알아서 list 업데이트됨!!
+        list = category?.todoList(wholeList: wholeList)
+    }
+
+    
     // MARK: - AddTarget
     private func setupAddTarget() {
     }
     // MARK: - EventSelector
-    @objc private func plusButtonClicked() {
-        let vc = RegisterTodoViewController()
-        pageTransition(to: vc, type: .presentNavigation)
-    }
-    
     // MARK: - SetupUI
     // MARK: - APIFetch
     // MARK: - PageTransition
@@ -101,7 +93,9 @@ extension TodoListViewController : UITableViewDelegate, UITableViewDataSource {
             self.repository.editItem(TodoTable.self, at: data.id, editKey: TodoTableProperty.isFlaged.rawValue, to: value)
 
             //테이블뷰 업데이트
-            self.viewManager.todoListTableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
+            //💚 여기서도 아래와 같은 이유로 reloadRows(X) reloadData(O)
+            self.viewManager.todoListTableView.reloadData()
+//            tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
         }
         flag.backgroundColor = Assets.Color.flagYellow
         
@@ -111,13 +105,23 @@ extension TodoListViewController : UITableViewDelegate, UITableViewDataSource {
     
     
     @objc private func checkToggleButtonTapped(button : UIButton) {
+//        guard let list else{return }
         let index = button.tag
         let data = list[index]
         let value = !data.isCompleted
         //realm 데이터 업데이트
         repository.editItem(TodoTable.self, at: data.id, editKey: TodoTableProperty.isCompleted.rawValue, to: value)
+        
 
+        //💚reloadRows했을 때의 문제 원인
+        //list는 쿼리가 적용된 데이터베이스의 리스트!!
+        // 상태값 바뀌면 =>  쿼리가 적용된대로 리스트가 자동적으로 바뀜..!
+        //--> 여기서 reloadRows를 하면 자동적으로 numberOfRowsInSection 부터 또 도는데
+        //reloadRows 여기서 바뀌어야하는 row는 인덱스는 3인데
+        //numberOfRowsInSection에서는 이미 쿼리가 적용되어 바뀐 리스트여서 2인덱스까지밖에 없게됨
+        
         //테이블뷰 업데이트
-        viewManager.todoListTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        viewManager.todoListTableView.reloadData()
+//        viewManager.todoListTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
 }

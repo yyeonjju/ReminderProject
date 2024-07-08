@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 
 final class TodoMainViewController : UIViewController {
@@ -14,6 +15,8 @@ final class TodoMainViewController : UIViewController {
     
     // MARK: - Properties
     let categoryItems = CategoryItem.allCases
+    var todoList : Results<TodoTable>!
+    let repository = RealmDBRepository()
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -23,8 +26,21 @@ final class TodoMainViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBarButton()
         setupDelegate()
         setupAddTarget()
+        todoList = repository.getAllObjects(tableModel: TodoTable.self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewManager.categoryCollectionView.reloadData()
+    }
+    
+    // MARK: - setupNavigationBar
+    func configureNavigationBarButton() {
+        let folder = UIBarButtonItem(image: UIImage(systemName: "folder"), style: .plain, target: self, action: #selector(folderButtonClicked))
+        folder.tintColor = Assets.Color.white
+        navigationItem.rightBarButtonItems = [folder]
     }
     
     // MARK: - SetupDelegate
@@ -45,6 +61,11 @@ final class TodoMainViewController : UIViewController {
         pageTransition(to: vc, type: .presentNavigation)
     }
     
+    @objc private func folderButtonClicked() {
+//        let vc = RegisterTodoViewController()
+//        pageTransition(to: vc, type: .presentNavigation)
+    }
+    
     // MARK: - APIFetch
     // MARK: - PageTransition
     
@@ -59,8 +80,16 @@ extension TodoMainViewController : UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.description(), for: indexPath) as! CategoryCollectionViewCell
-        let data = categoryItems[indexPath.row]
-        cell.configureData(data: data)
+        let category = categoryItems[indexPath.row]
+        let count = category.todoList(wholeList: todoList).count
+        cell.configureData(data: category, count : count)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = categoryItems[indexPath.row]
+        let vc = TodoListViewController()
+        vc.category = category
+        pageTransition(to: vc, type: .push)
     }
 }

@@ -14,7 +14,6 @@ final class TodoListView : UIView {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 30)
         label.textColor = .systemBlue
-        label.text = "전체"
         return label
     }()
     

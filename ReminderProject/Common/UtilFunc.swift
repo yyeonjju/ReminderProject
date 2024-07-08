@@ -30,3 +30,12 @@ func configureCollectionVewLayout (numberofItemInrow : Int, cellIneterSpacing : 
     
     return layout
 }
+
+func returnTodayDateRange(for date : Date) -> ClosedRange<Date> {
+    let calendar = Calendar.current
+    // 오늘 00시
+    let startOfDay = calendar.startOfDay(for: date)
+    // 내일 00시에서 1초를 빼서 오늘 24시를 구함
+    let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)?.addingTimeInterval(-1)
+    return (startOfDay...endOfDay!)
+}
